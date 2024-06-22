@@ -1,4 +1,3 @@
-import 'react-toastify/dist/ReactToastify.css';
 export default function HomePage() {
   return (
     <main className="p-4">
