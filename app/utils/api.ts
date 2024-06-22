@@ -48,3 +48,24 @@ export const updateInventory = async (updatedInventory: InventoryItem[]) => {
     console.error('Error updating inventory:', error);
   }
 };
+
+export const addInventoryItem = async (inventory: InventoryItem[], inventoryItem: InventoryItem) => {
+  try {
+    const response = await fetch(`http://184.73.145.4:8085/inventory`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify([...inventory, { name: inventoryItem.name, quantity: inventoryItem.quantity }]),
+    });
+
+    if (!response.ok) {
+      const errorData = await response.json();
+      throw new Error(errorData.error || 'Failed to add product');
+    }
+
+    return await response.json();
+  } catch (error) {
+    console.error('Error adding product to inventory:', error);
+  }
+};
