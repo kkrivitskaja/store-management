@@ -69,3 +69,26 @@ export const addInventoryItem = async (inventory: InventoryItem[], inventoryItem
     console.error('Error adding product to inventory:', error);
   }
 };
+
+export const resetInventory = async (): Promise<void> => {
+  try {
+    const response = await fetch('http://184.73.145.4:8085/inventory/reset', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    });
+
+    if (!response.ok) {
+      const errorData = await response.json();
+      throw new Error(errorData.error || 'Failed to reset inventory');
+    }
+  } catch (error) {
+    if (error instanceof Error) {
+      console.error('Error resetting inventory:', error.message);
+      throw new Error(error.message);
+    } else {
+      console.error('Unexpected error:', error);
+    }
+  }
+};
