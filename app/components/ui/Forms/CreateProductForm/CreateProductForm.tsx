@@ -6,15 +6,8 @@ import toast from 'react-hot-toast';
 
 import { zodResolver } from '@hookform/resolvers/zod';
 import updateCacheForPaths from '../../../../utils/revalidateCache';
-
-const ProductSchema = z.object({
-  name: z
-    .string()
-    .min(1, 'Product name is required')
-    .regex(/^[\d\sA-Z\\a-z-]+$/, {
-      message: 'Only latin letters, digits, spaces, and dashes are allowed',
-    }),
-});
+import { ProductSchema } from '../../../../lib/productShema';
+import { addProduct } from '../../../../utils/api';
 
 type FormData = z.infer<typeof ProductSchema>;
 
@@ -33,18 +26,8 @@ const CreateProductForm = () => {
 
   const onSubmit = async (data: FormData) => {
     try {
-      const response = await fetch('http://184.73.145.4:8085/product', {
-        method: 'PUT',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({ name: data.name }),
-      });
+      await addProduct(data);
 
-      if (!response.ok) {
-        const errorData = await response.json();
-        throw new Error(errorData.error || 'Failed to add product');
-      }
       updateCacheForPaths(['/product']);
       reset();
       toast.success('Product successfully added');
@@ -52,7 +35,7 @@ const CreateProductForm = () => {
       console.error('Error adding product:', error);
 
       if (error instanceof Error) {
-        toast.error('Product name is required');
+        toast.error('Product with this name already exists');
       } else {
         toast.error('Failed to add product');
       }
