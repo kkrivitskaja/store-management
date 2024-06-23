@@ -16,21 +16,43 @@ bun dev
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+1. Introduction
+   The Store Inventory Management System is a web application designed to help store managers efficiently manage their product lists and inventory. This application will be built using React.js, Next.js with TypeScript and will interact with a designated server to handle API calls for managing products and inventory. The application includes two main pages: an inventory list and a product creation page.
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+2. Requirements
+   Functional Requirements
+   Inventory List Page:
 
-## Learn More
+    Display a list of inventory items.
+    Allow users to add new inventory items by selecting from a list of available products.
+    Allow users to remove inventory items.
+    Each inventory item should have a name and a quantity.
+    Product Creation Page:
 
-To learn more about Next.js, take a look at the following resources:
+    Allow users to create new products by specifying a name.
+    API Endpoints:
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+    GET /product/all: Retrieve all products.
+    PUT /product: Create a new product.
+    GET /inventory: Retrieve the inventory list.
+    POST /inventory: Update the inventory list.
+    POST /inventory/reset: Reset the inventory list.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+3. Modules
+   Application:
 
-## Deploy on Vercel
+    Inventory List Component: Handles displaying and managing the inventory.
+    Product Creation Component: Handles the creation of new products.
+    API Server:
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+    Product API:
+    Endpoint to retrieve all products.
+    Endpoint to create a new product.
+    Inventory API:
+    Endpoint to retrieve the inventory list.
+    Endpoint to update the inventory list.
+    Endpoint to reset the inventory list.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+    Diagram 
+
+![alt text](diagram-export-23.06.2024-08_12_54.png)
