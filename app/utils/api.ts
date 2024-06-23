@@ -1,5 +1,6 @@
 import { z } from 'zod';
 import { ProductSchema } from '../lib/productShema';
+import { InventoryItem } from '../../types';
 
 type FormData = z.infer<typeof ProductSchema>;
 
@@ -18,11 +19,7 @@ export const addProduct = async (formData: FormData) => {
   }
 
   return response.json();
-
 };
-
-<<<<<<< HEAD
-import { InventoryItem } from '../../types';
 
 export const getInventory = async () => {
   try {
@@ -115,4 +112,4 @@ export const resetInventory = async (): Promise<void> => {
       console.error('Unexpected error:', error);
     }
   }
-}
+};
